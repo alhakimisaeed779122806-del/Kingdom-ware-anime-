@@ -18,11 +18,12 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Install Gradle and Generate Wrapper
+    - name: Generate Modern Gradle Wrapper
       run: |
-        sudo apt-get update
-        sudo apt-get install -y gradle
-        gradle wrapper
+        wget https://services.gradle.org/distributions/gradle-8.2-bin.zip
+        unzip -q gradle-8.2-bin.zip
+        export PATH=$PWD/gradle-8.2/bin:$PATH
+        gradle wrapper --gradle-version 8.2
 
     - name: Build APK with Gradle
       run: |
@@ -34,3 +35,4 @@ jobs:
       with:
         name: app-release-apk
         path: app/build/outputs/apk/release/app-release.apk
+        
