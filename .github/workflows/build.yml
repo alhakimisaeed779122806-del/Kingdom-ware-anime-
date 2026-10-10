@@ -28,11 +28,11 @@ jobs:
     - name: Build APK with Gradle
       run: |
         chmod +x gradlew
-        ./gradlew assembleRelease
+        ./gradlew assembleDebug
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: app-release-apk
-        path: app/build/outputs/apk/release/app-release.apk
+        name: game-debug-apk
+        path: app/build/outputs/apk/**/*.apk
         
